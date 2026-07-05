@@ -125,6 +125,11 @@ const Search = (props) => {
                                 <div
                                     key={project.id}
                                     className={styles.projectCard}
+                                    title={props.intl.formatMessage(messages.hoverText, {
+                                        author: project.author.username,
+                                        title: project.name
+                                    })}
+                                    onClick={() => window.open(`./#${project.id}`, '_blank')}
                                 >
                                     <div className={styles.thumbWrapper}>
                                         <img
@@ -141,7 +146,7 @@ const Search = (props) => {
                                                 description="Displayed under project title to credit creator"
                                                 id="tw.studioview.authorAttribution"
                                                 values={{
-                                                    author: project.author.username
+                                                    author: <a href={`user#${project.author.id}`}>{project.author.username}</a>
                                                 }}
                                             />
                                         </p>
