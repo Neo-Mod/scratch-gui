@@ -12,7 +12,7 @@ import {APP_NAME} from '../../lib/brand.js';
 
 const messages = defineMessages({
     welcomeModalTitle: {
-        defaultMessage: 'Welcome to Dash!',
+        defaultMessage: 'Welcome to NeoMod!',
         description: 'Title for the welcoming modal',
         id: 'dash.welcomeModal.title'
     }
@@ -28,30 +28,13 @@ const WelcomeModalComponent = props => (
         <Box className={styles.body}>
             <p className={styles.text}>
                 <FormattedMessage
-                    defaultMessage="{dash} is based on {turbowarp} and adds stuff like {jsonCategory}, {consoleMode}, {newBlocks}, {extensions}, {editorCustomization}, and {otherFeatures}."
+                    defaultMessage="{neomod} is based on {dash} and {turbowarp} and adds a u7nch of new stuff {newBlocks}, {extensions}, {editorCustomization}, and {otherFeatures}."
                     description="Text in Welcome Modal"
                     id="dash.welcomeModal.text1"
                     values={{
+                        neomod: <b>NeoMod</b>,
                         dash: <b>Dash</b>,
                         turbowarp: <b>TurboWarp</b>,
-                        jsonCategory: (
-                            <b>
-                                <FormattedMessage
-                                    defaultMessage="JSON category"
-                                    description="Subtext in Welcome Modal"
-                                    id="dash.welcomeModal.text1.subtext1"
-                                />
-                            </b>
-                        ),
-                        consoleMode: (
-                            <b>
-                                <FormattedMessage
-                                    defaultMessage="console mode"
-                                    description="Subtext in Welcome Modal"
-                                    id="dash.welcomeModal.text1.subtext2"
-                                />
-                            </b>
-                        ),
                         newBlocks: (
                             <b>
                                 <FormattedMessage
@@ -94,7 +77,7 @@ const WelcomeModalComponent = props => (
                 <br />
                 <b>
                     <FormattedMessage
-                        defaultMessage="Dash features are available only in English and Russian (at the moment)."
+                        defaultMessage="NeoMod features are available only in English (at the moment)."
                         description="Text in Welcome Modal"
                         id="dash.welcomeModal.text2"
                     />
@@ -105,28 +88,15 @@ const WelcomeModalComponent = props => (
                 className={styles.poster}
                 src={poster}
                 draggable={false}
-                alt="Dash Poster"
+                alt="NeoMod Poster"
             />
             <p className={styles.text}>
                 <FormattedMessage
-                    defaultMessage="{APP_NAME} was made by {damir2809DBDev}, {Den4ik12}, {scratch_craft_2Creative}, {AnonimKing24AK24}, and {otherContributors}."
+                    defaultMessage="{APP_NAME} was based on Dash and edited by GaiaWindWave90."
                     description="Text in Welcome Modal"
                     id="dash.welcomeModal.text3"
                     values={{
-                        APP_NAME,
-                        damir2809DBDev: <><a href="https://scratch.mit.edu/users/damir2809">damir2809</a> (<a href="user#15">DBDev</a>)</>,
-                        Den4ik12: <><a href="https://scratch.mit.edu/users/Den4ik-12">Den4ik-12</a> (<a href="user#17">Den4ik-12</a>)</>,
-                        scratch_craft_2Creative: <><a href="https://scratch.mit.edu/users/scratch_craft_2">scratch_craft_2</a> (<a href="user#20">Creative</a>)</>,
-                        AnonimKing24AK24: <><a href="https://scratch.mit.edu/users/AnonimKing24">AnonimKing24</a> (<a href="user#81">AK24</a>)</>,
-                        otherContributors: (
-                            <a href="credits">
-                                <FormattedMessage
-                                    defaultMessage="other contributors"
-                                    description="Subtext in Welcome Modal"
-                                    id="dash.welcomeModal.text3.subtext1"
-                                />
-                            </a>
-                        )
+                        APP_NAME
                     }}
                 />
                 <br />
@@ -157,7 +127,7 @@ const WelcomeModalComponent = props => (
                 />
                 <p>
                     <FormattedMessage
-                        defaultMessage="Don't show this again"
+                        defaultMessage="Don't show this again!"
                         description="Label for the checkbox to hide the welcome modal in the future"
                         id="dash.welcomeModal.dontShow"
                     />
@@ -165,7 +135,7 @@ const WelcomeModalComponent = props => (
             </label>
             <p className={styles.text}>
                 <FormattedMessage
-                    defaultMessage="By using Dash, you agree to our {termsOfService} and {privacyPolicy}."
+                    defaultMessage="By using NeoMod, you agree to our {termsOfService} and {privacyPolicy}."
                     description="Text to inform users about terms of service and privacy policy when registering"
                     id="dash.tosAndPrivacy"
                     values={{

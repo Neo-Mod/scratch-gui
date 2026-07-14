@@ -2,7 +2,7 @@ import bindAll from 'lodash.bindall';
 import PropTypes from 'prop-types';
 import React from 'react';
 import VM from 'scratch-vm';
-import {extensions, otherExtensions} from 'dash-extensions-gallery/src/lib/extensions.js';
+import {extensions, otherExtensions} from 'neomod-extensions-gallery/src/lib/extensions.js';
 import {defineMessages, injectIntl, intlShape} from 'react-intl';
 import log from '../lib/log';
 

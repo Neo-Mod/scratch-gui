@@ -13,7 +13,9 @@ const guiColors = {
     'extensions-transparent': 'var(--dash-accent-custom-extensions-transparent)',
     'extensions-light': 'var(--dash-accent-custom-extensions-light)',
 
-    'drop-highlight': 'var(--dash-accent-custom-drop-highlight)'
+    'drop-highlight': 'var(--dash-accent-custom-drop-highlight)',
+	
+	'menu-bar-background': 'var(--dash-accent-custom-dark)'
 };
 
 const blockColors = {
