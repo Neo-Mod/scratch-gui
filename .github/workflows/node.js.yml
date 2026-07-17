@@ -17,7 +17,7 @@ jobs:
       with:
         node-version: 22
         cache: npm
-    - run: npm ci --legacy-peer-deps
+    - run: npm install --legacy-peer-deps
     - run: git lfs pull
     - run: npm run build
     - run: npm run test:unit
