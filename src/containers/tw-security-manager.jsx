@@ -6,7 +6,7 @@ import bindAll from 'lodash.bindall';
 import SecurityManagerModal from '../components/tw-security-manager-modal/security-manager-modal.jsx';
 import SecurityModals from '../lib/tw-security-manager-constants';
 import {getPersistedUnsandboxed, setPersistedUnsandboxed} from '../lib/tw-persisted-unsandboxed.js';
-import {extensions} from 'dash-extensions-gallery/src/lib/extensions.js';
+import {extensions} from 'neo-mod-extensions-gallery/src/lib/extensions.js';
 
 /* eslint-disable require-atomic-updates */
 
