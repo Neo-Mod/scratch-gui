@@ -19,7 +19,12 @@ export default defineMessages({
     pm: {
         defaultMessage: 'PenguinMod',
         description: 'Tag for filtering a library for extensions from PenguinMod',
-        id: 'nm.libraryTags.other'
+        id: 'nm.libraryTags.pm'
+    },
+	gm: {
+        defaultMessage: 'GaiaMod',
+        description: 'Tag for filtering a library for extensions from GaiaMod',
+        id: 'nm.libraryTags.gm'
     },
     animals: {
         defaultMessage: 'Animals',

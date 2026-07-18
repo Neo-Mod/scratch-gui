@@ -2,7 +2,7 @@ import bindAll from 'lodash.bindall';
 import PropTypes from 'prop-types';
 import React from 'react';
 import VM from 'scratch-vm';
-import {extensions, pmExtensions, otherExtensions} from 'neomod-extensions-gallery/src/lib/extensions.js';
+import {extensions, pmExtensions, gmExtensions, otherExtensions} from 'neomod-extensions-gallery/src/lib/extensions.js';
 import {defineMessages, injectIntl, intlShape} from 'react-intl';
 import log from '../lib/log';
 
@@ -57,6 +57,7 @@ const creditLink = (credit) => credit.link;
 let cachedTwGallery = null;
 let twGalleryMirror = false;
 let cachedPenguinMod = null;
+let cachedGaiaMod = null;
 let cachedOtherExtensions = null;
 let cachedGallery = null;
 
@@ -146,6 +147,39 @@ const fetchPenguinMod = async () => {
     }));
 };
 
+const fetchGaiaMod = async () => {
+    return gmExtensions.map(extension => ({
+        name: extension.name,
+        nameTranslations: extension.nameTranslations || {},
+        description: extension.description,
+        descriptionTranslations: extension.descriptionTranslations || {},
+        extensionId: extension.id,
+        extensionURL: extension.code.startsWith('http') ? extension.code : `https://gaiamod-main.github.io/extensions/${extension.code}`,
+        iconURL: extension.banner.startsWith('http') ? extension.banner : `https://gaiamod-main.github.io/images/${extension.banner || 'unknown.svg'}`,
+        tags: ['gm'],
+        credits: [
+            ...(typeof extension.creator == 'object' ? extension.creator : [extension.creator] || []),
+            ...(extension.notes ? [extension.notes] : [])
+        ].map(credit => {
+            if (extension.notes && credit == extension.notes) return credit;
+            return (
+                <a
+                    href={extension.isGitHub ? `https://github.com/${credit}` : `https://scratch.mit.edu/users/${credit}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    key={credit}
+                >
+                    {credit}
+                </a>
+            );
+        }),
+        docsURI: null,
+        samples: null,
+        featured: true
+    }));
+};
+
+
 const fetchOtherExtensions = async () => {
     return otherExtensions.map(extension => ({
         name: extension.name,
@@ -222,6 +256,7 @@ class ExtensionLibrary extends React.PureComponent {
         ]);
         this.state = {
             pmExtensions: cachedPenguinMod,
+            gmExtensions: cachedGaiaMod,
             otherExtensions: cachedOtherExtensions,
             twGallery: cachedTwGallery,
             gallery: cachedGallery,
@@ -258,6 +293,22 @@ class ExtensionLibrary extends React.PureComponent {
                     cachedPenguinMod = gallery;
                     this.setState({
                         pmExtensions: gallery
+                    });
+                    clearTimeout(timeout);
+                })
+                .catch(error => {
+                    log.error(error);
+                    this.setState({
+                        galleryError: error
+                    });
+                    clearTimeout(timeout);
+                });
+				
+				fetchGaiaMod()
+                .then(gallery => {
+                    cachedGaiaMod = gallery;
+                    this.setState({
+                        gmExtensions: gallery
                     });
                     clearTimeout(timeout);
                 })
