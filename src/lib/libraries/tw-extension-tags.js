@@ -6,6 +6,6 @@ export default [
     {tag: 'dash', intlLabel: messages.dash},
     {tag: 'nm', intlLabel: messages.neomod},
     {tag: 'tw', intlLabel: 'TurboWarp'}, // Because is a brand name, it's unnecessary for to be translatable.
-    {tag: 'pm', intlLabel: messages.penguinmod},
+    {tag: 'pm', intlLabel: messages.pm},
     {tag: 'other', intlLabel: messages.other}
 ];

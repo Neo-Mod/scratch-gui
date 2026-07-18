@@ -122,7 +122,7 @@ const fetchPenguinMod = async () => {
         extensionId: extension.id,
         extensionURL: extension.code.startsWith('http') ? extension.code : `https://extensions.penguinmod.com/extensions/${extension.code}`,
         iconURL: extension.banner.startsWith('http') ? extension.banner : `https://extensions.penguinmod.com/images/${extension.banner || 'unknown.svg'}`,
-        tags: ['other'],
+        tags: ['pm'],
         credits: [
             ...(typeof extension.creator == 'object' ? extension.creator : [extension.creator] || []),
             ...(extension.notes ? [extension.notes] : [])
