@@ -463,13 +463,13 @@ class ExtensionLibrary extends React.PureComponent {
         library.push('---');
 
         if (this.state.pmExtensions) {
-            const filteredOther = this.state.pmExtensions
+            const filteredPm = this.state.pmExtensions
                 .filter(item => !addedIds.has(item.extensionId))
                 .map(i => {
                     addedIds.add(i.extensionId);
                     return translateGalleryItem(i, locale);
                 });
-            library.push(...filteredOther.map(toLibraryItem));
+            library.push(...filteredPm.map(toLibraryItem));
         } else if (this.state.galleryTimedOut && !this.state.pmExtensions) {
             library.push(toLibraryItem(galleryLoading));
         } else if (this.state.galleryError && !this.state.pmExtensions) {
@@ -479,13 +479,13 @@ class ExtensionLibrary extends React.PureComponent {
 		library.push('---');
 
         if (this.state.gmExtensions) {
-            const filteredOther = this.state.gmExtensions
+            const filteredGm = this.state.gmExtensions
                 .filter(item => !addedIds.has(item.extensionId))
                 .map(i => {
                     addedIds.add(i.extensionId);
                     return translateGalleryItem(i, locale);
                 });
-            library.push(...filteredOther.map(toLibraryItem));
+            library.push(...filteredGm.map(toLibraryItem));
         } else if (this.state.galleryTimedOut && !this.state.gmExtensions) {
             library.push(toLibraryItem(galleryLoading));
         } else if (this.state.galleryError && !this.state.gmExtensions) {
