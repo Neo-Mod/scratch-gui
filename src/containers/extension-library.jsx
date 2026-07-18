@@ -2,7 +2,7 @@ import bindAll from 'lodash.bindall';
 import PropTypes from 'prop-types';
 import React from 'react';
 import VM from 'scratch-vm';
-import {extensions, otherExtensions} from 'neomod-extensions-gallery/src/lib/extensions.js';
+import {extensions, pmExtensions} from 'neomod-extensions-gallery/src/lib/extensions.js';
 import {defineMessages, injectIntl, intlShape} from 'react-intl';
 import log from '../lib/log';
 
@@ -56,7 +56,7 @@ const creditLink = (credit) => credit.link;
 
 let cachedTwGallery = null;
 let twGalleryMirror = false;
-let cachedOtherExtensions = null;
+let cachedPenguinMod = null;
 let cachedGallery = null;
 
 const fetchTwLibrary = async () => {
@@ -113,8 +113,8 @@ const fetchTwLibrary = async () => {
     }));
 };
 
-const fetchOtherExtensions = async () => {
-    return otherExtensions.map(extension => ({
+const fetchPenguinMod = async () => {
+    return pmExtensions.map(extension => ({
         name: extension.name,
         nameTranslations: extension.nameTranslations || {},
         description: extension.description,
@@ -190,7 +190,7 @@ class ExtensionLibrary extends React.PureComponent {
             'handleItemSelect'
         ]);
         this.state = {
-            otherExtensions: cachedOtherExtensions,
+            pmExtensions: cachedPenguinMod,
             twGallery: cachedTwGallery,
             gallery: cachedGallery,
             galleryError: null,
@@ -222,11 +222,11 @@ class ExtensionLibrary extends React.PureComponent {
                 });
 
             
-            fetchOtherExtensions()
+            fetchPenguinMod()
                 .then(gallery => {
-                    cachedOtherExtensions = gallery;
+                    cachedPenguinMod = gallery;
                     this.setState({
-                        otherExtensions: gallery
+                        pmExtensions: gallery
                     });
                     clearTimeout(timeout);
                 })
@@ -364,17 +364,17 @@ class ExtensionLibrary extends React.PureComponent {
 
         library.push('---');
 
-        if (this.state.otherExtensions) {
-            const filteredOther = this.state.otherExtensions
+        if (this.state.pmExtensions) {
+            const filteredOther = this.state.pmExtensions
                 .filter(item => !addedIds.has(item.extensionId))
                 .map(i => {
                     addedIds.add(i.extensionId);
                     return translateGalleryItem(i, locale);
                 });
             library.push(...filteredOther.map(toLibraryItem));
-        } else if (this.state.galleryTimedOut && !this.state.otherExtensions) {
+        } else if (this.state.galleryTimedOut && !this.state.pmExtensions) {
             library.push(toLibraryItem(galleryLoading));
-        } else if (this.state.galleryError && !this.state.otherExtensions) {
+        } else if (this.state.galleryError && !this.state.pmExtensions) {
             library.push(toLibraryItem(galleryError));
         }
 

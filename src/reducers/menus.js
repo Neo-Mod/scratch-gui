@@ -10,6 +10,7 @@ const MENU_LOGIN = 'loginMenu';
 const MENU_MODE = 'modeMenu';
 const MENU_SETTINGS = 'settingsMenu';
 const MENU_ACCENT = 'accentMenu';
+const MENU_GUI = 'guiMenu';
 const MENU_BLOCKS_THEME = 'blocksThemeMenu';
 const MENU_WALLPAPER = 'wallpaperThemeMenu';
 const MENU_FONT = 'fontThemeMenu';
@@ -57,6 +58,7 @@ const rootMenu = new Menu('root')
         new Menu(MENU_SETTINGS)
             .addChild(new Menu(MENU_LANGUAGE))
             .addChild(new Menu(MENU_ACCENT))
+            .addChild(new Menu(MENU_GUI))
             .addChild(new Menu(MENU_BLOCKS_THEME))
             .addChild(new Menu(MENU_WALLPAPER))
             .addChild(new Menu(MENU_FONT))
@@ -158,6 +160,10 @@ const openAccentMenu = () => openMenu(MENU_ACCENT);
 const closeAccentMenu = () => closeMenu(MENU_ACCENT);
 const accentMenuOpen = state => state.scratchGui.menus[MENU_ACCENT];
 
+const openGuiMenu = () => openMenu(MENU_GUI);
+const closeGuiMenu = () => closeMenu(MENU_GUI);
+const guiMenuOpen = state => state.scratchGui.menus[MENU_GUI];
+
 const openBlocksThemeMenu = () => openMenu(MENU_BLOCKS_THEME);
 const closeBlocksThemeMenu = () => closeMenu(MENU_BLOCKS_THEME);
 const blocksThemeMenuOpen = state => state.scratchGui.menus[MENU_BLOCKS_THEME];
@@ -204,6 +210,9 @@ export {
     openAccentMenu,
     closeAccentMenu,
     accentMenuOpen,
+	openGuiMenu,
+    closeGuiMenu,
+    guiMenuOpen,
     openBlocksThemeMenu,
     closeBlocksThemeMenu,
     blocksThemeMenuOpen,

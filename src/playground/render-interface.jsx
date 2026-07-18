@@ -232,7 +232,7 @@ const Footer = () => (
                 <FormattedMessage
                     // eslint-disable-next-line max-len
                     defaultMessage="{APP_NAME} is based on Scratch, TurboWarp and other mods, but not affiliated with these mods. TurboWarp is available for free at: {turbowarpDotOrg}."
-                    description="Disclaimer that Dash is based on Scratch and TurboWarp and other mods."
+                    description="Disclaimer that NeoMod is based on Dash, Scratch and TurboWarp and other mods."
                     id="dash.footer.basedOnDisclaimer"
                     values={{
                         APP_NAME,
@@ -268,29 +268,29 @@ const Footer = () => (
                     </a>
                 </div>
                 <div className={styles.footerSection}>
-                    <a href="https://dashblocks.org/desktop">
+                    <a href="https://neo-mod.github.io/desktop">
                         {/* Do not translate */}
-                        {'Dash Desktop'}
+                        {'NeoMod Desktop'}
                     </a>
-                    <a href="https://dashblocks.org/packager">
+                    <a href="https://neo-mod.github.io/packager">
                         {/* Do not translate */}
-                        {'Dash Packager'}
+                        {'NeoMod Packager'}
                     </a>
-                    <a href="https://dashblocks.org/docs/embedding">
+                    <a href="https://neo-mod.github.io/docs/embedding">
                         <FormattedMessage
                             defaultMessage="Embedding"
                             description="Link in footer to embedding documentation for embedding link"
                             id="tw.footer.embed"
                         />
                     </a>
-                    <a href="https://dashblocks.org/docs/url-parameters">
+                    <a href="https://neo-mod.github.io/docs/url-parameters">
                         <FormattedMessage
                             defaultMessage="URL Parameters"
                             description="Link in footer to URL parameters documentation"
                             id="tw.footer.parameters"
                         />
                     </a>
-                    <a href="https://dashblocks.org/docs/">
+                    <a href="https://neo-mod.github.io/docs/">
                         <FormattedMessage
                             defaultMessage="Documentation"
                             description="Link in footer to additional documentation"
@@ -302,7 +302,7 @@ const Footer = () => (
                     <a href="https://scratch.mit.edu/discuss/topic/879252/">
                         <FormattedMessage
                             defaultMessage="Our Forum"
-                            description="Link to Dash's forum in Scratch"
+                            description="Link to NeoMod's forum in Scratch"
                             id="dash.home.forum"
                         />
                     </a>
@@ -313,7 +313,7 @@ const Footer = () => (
                             id="tw.feedback"
                         />
                     </a>
-                    <a href="https://github.com/DashBlocks/">
+                    <a href="https://github.com/Neo-Mod/">
                         <FormattedMessage
                             defaultMessage="Source Code"
                             description="Link to source code"
@@ -508,7 +508,7 @@ const WhatsNew = () => {
     const [error, setError] = useState();
 
     useEffect(() => {
-        fetch('https://api.github.com/repos/DashBlocks/dashblocks.github.io/commits')
+        fetch('https://api.github.com/repos/Neo-Mod/neo-mod.github.io/commits')
             .then(response => response.json())
             .then(data => {
                 setCommits(data.slice(0, 10));
@@ -779,16 +779,68 @@ class Interface extends React.PureComponent {
                                             }}
                                         >
                                             <p>
-                                                <FormattedMessage
-                                                    // eslint-disable-next-line max-len
-                                                    defaultMessage="{APP_NAME} is a mod of TurboWarp that adds cool stuff and features for editor. Try it out by clicking on 'See inside' button or by inputting a project ID or URL above or choosing a featured project below."
-                                                    description="Description of Dash on the homepage"
-                                                    id="dash.home.description"
-                                                    values={{
-                                                        APP_NAME
-                                                    }}
-                                                />
-                                            </p>
+                                    <FormattedMessage
+                                        // eslint-disable-next-line max-len
+                                        defaultMessage="{neoMod} is a mod of {dash} and {turboWarp} that adds powerful new features in extensions and anything. {turboWarp} is a {scratch} mod that compiles projects to JavaScript to make them run really fast. Try it out by inputting a project ID or URL above or choosing a featured project below."
+                                        description="Description of NeoMod on the homepage"
+                                        id="tw.home.description"
+                                        values={{
+                                            APP_NAME,
+											neoMod: (
+                                                <a
+												style={{
+                                                color: '#6D4CFF',
+                                                cursor: 'pointer'
+                                            }}
+                                                href="neo-mod.github.io"
+                                              target="_blank"
+                                              rel="noreferrer"
+                                                   >
+                                              {'NeoMod'}
+                                               </a>
+                                               ),
+											dash: (
+                                                <a
+												style={{
+                                                color: '#FF884C',
+                                                cursor: 'pointer'
+                                            }}
+                                                href="dashblocks.org"
+                                              target="_blank"
+                                              rel="noreferrer"
+                                                   >
+                                              {'Dash'}
+                                               </a>
+                                               ),
+										turboWarp: (
+                                                <a
+												style={{
+                                                color: '#FF4C4C',
+                                                cursor: 'pointer'
+                                            }}
+                                                href="https://turbowarp.org/"
+                                              target="_blank"
+                                              rel="noreferrer"
+                                                   >
+                                              {'TurboWarp'}
+                                               </a>
+                                               ),
+										scratch: (
+                                                <a
+												style={{
+                                                color: '#FCA919',
+                                                cursor: 'pointer'
+                                            }}
+                                                href="https://scratch.mit.edu/"
+                                              target="_blank"
+                                              rel="noreferrer"
+                                                   >
+                                              {'Scratch'}
+                                               </a>
+                                               ),
+                                            }}
+                                    />
+                                </p>
                                             <FeaturedProjects />
                                         </div>
                                     </TabPanel>
@@ -843,11 +895,11 @@ class Interface extends React.PureComponent {
                                                             values={{
                                                                 link: (
                                                                     <a
-                                                                        href="https://dashblocks.org/docs/unshared-projects"
+                                                                        href="https://neo-mod.github.io/docs/unshared-projects"
                                                                         target="_blank"
                                                                         rel="noopener noreferrer"
                                                                     >
-                                                                        {'https://dashblocks.org/docs/unshared-projects'}
+                                                                        {'https://neo-mod.github.io/docs/unshared-projects'}
                                                                     </a>
                                                                 )
                                                             }}

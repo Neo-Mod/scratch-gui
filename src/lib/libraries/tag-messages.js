@@ -6,10 +6,20 @@ export default defineMessages({
         description: 'Tag for filtering a library for Dash-created content',
         id: 'dash.libraryTags.dash'
     },
+    neomod: {
+        defaultMessage: 'NeoMod',
+        description: 'Tag for filtering a library for NeoMod-created content',
+        id: 'nm.libraryTags.neomod'
+    },
     other: {
         defaultMessage: 'Other mods',
         description: 'Tag for filtering a library for extensions from other modifications',
         id: 'dash.libraryTags.other'
+    },
+    pm: {
+        defaultMessage: 'PenguinMod',
+        description: 'Tag for filtering a library for extensions from PenguinMod',
+        id: 'nm.libraryTags.other'
     },
     animals: {
         defaultMessage: 'Animals',

@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import check from './check.svg';
 import dropdownCaret from './dropdown-caret.svg';
 import {MenuItem, Submenu} from '../menu/menu.jsx';
-import {ACCENT_BLUE, ACCENT_MAP, ACCENT_PURPLE, ACCENT_RED, ACCENT_ORANGE, ACCENT_INDIGO, ACCENT_GREEN, ACCENT_RAINBOW, ACCENT_CUSTOM, Theme} from '../../lib/themes/index.js';
+import {ACCENT_BLUE, ACCENT_MAP, ACCENT_PURPLE, ACCENT_RED, ACCENT_ORANGE, ACCENT_INDIGO, ACCENT_GREEN, ACCENT_COTTON_CANDY, ACCENT_RAINBOW, ACCENT_CUSTOM, Theme} from '../../lib/themes/index.js';
 import {openAccentMenu, accentMenuOpen, closeSettingsMenu} from '../../reducers/menus.js';
 import {setTheme} from '../../reducers/theme.js';
 import {persistTheme} from '../../lib/themes/themePersistance.js';
@@ -45,6 +45,11 @@ const options = defineMessages({
         defaultMessage: 'Blue',
         description: 'Name of the blue color scheme. Matches Scratch before the high contrast update.',
         id: 'tw.accent.blue'
+    },
+    [ACCENT_COTTON_CANDY]: {
+        defaultMessage: 'Cotton Candy',
+        description: 'Name of the pastel pink/blue color scheme.',
+        id: 'tw.accent.cottoncandy'
     },
     [ACCENT_RAINBOW]: {
         defaultMessage: 'Rainbow',
