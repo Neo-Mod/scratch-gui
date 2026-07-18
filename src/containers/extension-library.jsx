@@ -475,6 +475,38 @@ class ExtensionLibrary extends React.PureComponent {
         } else if (this.state.galleryError && !this.state.pmExtensions) {
             library.push(toLibraryItem(galleryError));
         }
+		
+		library.push('---');
+
+        if (this.state.gmExtensions) {
+            const filteredOther = this.state.gmExtensions
+                .filter(item => !addedIds.has(item.extensionId))
+                .map(i => {
+                    addedIds.add(i.extensionId);
+                    return translateGalleryItem(i, locale);
+                });
+            library.push(...filteredOther.map(toLibraryItem));
+        } else if (this.state.galleryTimedOut && !this.state.gmExtensions) {
+            library.push(toLibraryItem(galleryLoading));
+        } else if (this.state.galleryError && !this.state.gmExtensions) {
+            library.push(toLibraryItem(galleryError));
+        }
+		
+		library.push('---');
+
+        if (this.state.otherExtensions) {
+            const filteredOther = this.state.otherExtensions
+                .filter(item => !addedIds.has(item.extensionId))
+                .map(i => {
+                    addedIds.add(i.extensionId);
+                    return translateGalleryItem(i, locale);
+                });
+            library.push(...filteredOther.map(toLibraryItem));
+        } else if (this.state.galleryTimedOut && !this.state.otherExtensions) {
+            library.push(toLibraryItem(galleryLoading));
+        } else if (this.state.galleryError && !this.state.otherExtensions) {
+            library.push(toLibraryItem(galleryError));
+        }
 
         return (
             <LibraryComponent
