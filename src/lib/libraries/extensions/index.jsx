@@ -355,7 +355,6 @@ export default [
             />
         ),
         tags: ['nm'],
-        incompatibleWithScratch: true,
         featured: true
     },
     {
@@ -399,7 +398,6 @@ export default [
                 id="tw.twExtension.description"
             />
         ),
-        incompatibleWithScratch: true,
         tags: ['nm'],
         featured: true
     },
