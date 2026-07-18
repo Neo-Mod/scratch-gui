@@ -46,11 +46,11 @@ import gdxforInsetIconURL from './gdxfor/gdxfor-small.svg';
 import gdxforConnectionIconURL from './gdxfor/gdxfor-illustration.svg';
 import gdxforConnectionSmallIconURL from './gdxfor/gdxfor-small.svg';
 
-import twIcon from './tw/dash.svg';
+import twIcon from './tw/nm.png';
 import customExtensionIcon from './custom/custom.svg';
 import returnIcon from './custom/return.svg';
 import legacyListsIcon from './custom/legacy-lists.svg';
-import galleryIcon from './gallery/gallery.svg';
+import galleryIcon from './gallery/gallery.png';
 import {APP_NAME} from '../../brand';
 
 export default [
@@ -354,7 +354,7 @@ export default [
                 id="tw.customReporters.description"
             />
         ),
-        tags: ['dash'],
+        tags: ['nm'],
         incompatibleWithScratch: true,
         featured: true
     },
@@ -376,7 +376,7 @@ export default [
                 id="dash.legacyLists.description"
             />
         ),
-        tags: ['dash'],
+        tags: ['nm'],
         featured: true
     },
     {
@@ -400,7 +400,7 @@ export default [
             />
         ),
         incompatibleWithScratch: true,
-        tags: ['dash'],
+        tags: ['nm'],
         featured: true
     },
     {
@@ -421,7 +421,7 @@ export default [
                 id="tw.customExtension.description"
             />
         ),
-        tags: ['dash'],
+        tags: ['nm'],
         featured: true
         // Not marked as incompatible with Scratch so that clicking on it doesn't show a prompt
     }
@@ -449,7 +449,7 @@ export const galleryLoading = {
             id="dash.extensionGallery.loading"
         />
     ),
-    tags: ['dash'],
+    tags: ['nm'],
     featured: true
 };
 
@@ -475,7 +475,7 @@ export const galleryMore = {
             id="dash.extensionGallery.more"
         />
     ),
-    tags: ['dash'],
+    tags: ['nm'],
     featured: true
 };
 
@@ -501,6 +501,6 @@ export const galleryError = {
             id="dash.extensionGallery.error"
         />
     ),
-    tags: ['dash'],
+    tags: ['nm'],
     featured: true
 };
