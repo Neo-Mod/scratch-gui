@@ -185,8 +185,8 @@ const fetchLibrary = async () => {
         description: extension.description,
         descriptionTranslations: extension.descriptionTranslations || {},
         extensionId: extension.id,
-        extensionURL: extension.code?.startsWith('http') ? extension.code : `https://dashblocks.org/extensions/static/extensions/${extension.code}`,
-        iconURL: extension.banner?.startsWith('http') ? extension.banner : `https://dashblocks.org/extensions/static/images/${extension.banner || 'unknown.svg'}`,
+        extensionURL: extension.code?.startsWith('http') ? extension.code : `https://neo-mod.github.io/extensions/static/extensions/${extension.code}`,
+        iconURL: extension.banner?.startsWith('http') ? extension.banner : `https://neo-mod.github.io/extensions/static/images/${extension.banner || 'unknown.svg'}`,
         tags: ['dash'],
         credits: [
             ...(Array.isArray(extension.creator) ? extension.creator : [extension.creator] || []).map(credit => {
@@ -204,7 +204,7 @@ const fetchLibrary = async () => {
             }),
             ...(extension.notes ? [extension.notes] : [])
         ],
-        docsURI: extension.documentation ? `https://dashblocks.org/extensions/static/documentations/${extension.documentation}.md` : null,
+        docsURI: extension.documentation ? `https://neo-mod.github.io/extensions/static/documentations/${extension.documentation}.md` : null,
         samples: /*extension.samples ? extension.samples.map(sample => ({
             href: `${process.env.ROOT}editor?project_url=https://extensions.turbowarp.org/samples/${encodeURIComponent(sample)}.sb3`,
             text: sample
