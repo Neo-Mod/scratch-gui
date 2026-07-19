@@ -58,7 +58,6 @@ let cachedTwGallery = null;
 let twGalleryMirror = false;
 let cachedPenguinMod = null;
 let cachedGaiaMod = null;
-let cachedOtherExtensions = null;
 let cachedGallery = null;
 
 const fetchTwLibrary = async () => {
@@ -154,42 +153,9 @@ const fetchGaiaMod = async () => {
         description: extension.description,
         descriptionTranslations: extension.descriptionTranslations || {},
         extensionId: extension.id,
-        extensionURL: extension.code.startsWith('http') ? extension.code : `https://gaiamod-main.github.io/extensions/${extension.code}`,
-        iconURL: extension.banner.startsWith('http') ? extension.banner : `https://gaiamod-main.github.io/images/${extension.banner || 'unknown.svg'}`,
+        extensionURL: extension.code?.startsWith('http') ? extension.code : `https://gaiamod-main.github.io/extensions/${extension.code}`,
+        iconURL: extension.banner?.startsWith('http') ? extension.banner : `https://gaiamod-main.github.io/images/${extension.banner || 'unknown.svg'}`,
         tags: ['gm'],
-        credits: [
-            ...(typeof extension.creator == 'object' ? extension.creator : [extension.creator] || []),
-            ...(extension.notes ? [extension.notes] : [])
-        ].map(credit => {
-            if (extension.notes && credit == extension.notes) return credit;
-            return (
-                <a
-                    href={extension.isGitHub ? `https://github.com/${credit}` : `https://scratch.mit.edu/users/${credit}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    key={credit}
-                >
-                    {credit}
-                </a>
-            );
-        }),
-        docsURI: null,
-        samples: null,
-        featured: true
-    }));
-};
-
-
-const fetchOtherExtensions = async () => {
-    return otherExtensions.map(extension => ({
-        name: extension.name,
-        nameTranslations: extension.nameTranslations || {},
-        description: extension.description,
-        descriptionTranslations: extension.descriptionTranslations || {},
-        extensionId: extension.id,
-        extensionURL: extension.code.startsWith('http') ? extension.code : `https://ruby-devs.vercel.app/cdn/extensions/${extension.code}`,
-        iconURL: extension.banner.startsWith('http') ? extension.banner : `https://ruby-devs.vercel.app/cdn/thumbnails/${extension.banner || 'unknown.svg'}`,
-        tags: ['other'],
         credits: [
             ...(typeof extension.creator == 'object' ? extension.creator : [extension.creator] || []),
             ...(extension.notes ? [extension.notes] : [])
@@ -257,7 +223,6 @@ class ExtensionLibrary extends React.PureComponent {
         this.state = {
             pmExtensions: cachedPenguinMod,
             gmExtensions: cachedGaiaMod,
-            otherExtensions: cachedOtherExtensions,
             twGallery: cachedTwGallery,
             gallery: cachedGallery,
             galleryError: null,
@@ -303,28 +268,12 @@ class ExtensionLibrary extends React.PureComponent {
                     });
                     clearTimeout(timeout);
                 });
-				
-				fetchGaiaMod()
+
+            fetchGaiaMod()
                 .then(gallery => {
                     cachedGaiaMod = gallery;
                     this.setState({
                         gmExtensions: gallery
-                    });
-                    clearTimeout(timeout);
-                })
-                .catch(error => {
-                    log.error(error);
-                    this.setState({
-                        galleryError: error
-                    });
-                    clearTimeout(timeout);
-                });
-				
-				fetchOtherExtensions()
-                .then(gallery => {
-                    cachedOtherExtensions = gallery;
-                    this.setState({
-                        otherExtensions: gallery
                     });
                     clearTimeout(timeout);
                 })
@@ -475,8 +424,8 @@ class ExtensionLibrary extends React.PureComponent {
         } else if (this.state.galleryError && !this.state.pmExtensions) {
             library.push(toLibraryItem(galleryError));
         }
-		
-		library.push('---');
+
+        library.push('---');
 
         if (this.state.gmExtensions) {
             const filteredGm = this.state.gmExtensions
@@ -492,21 +441,6 @@ class ExtensionLibrary extends React.PureComponent {
             library.push(toLibraryItem(galleryError));
         }
 		
-		library.push('---');
-
-        if (this.state.otherExtensions) {
-            const filteredOther = this.state.otherExtensions
-                .filter(item => !addedIds.has(item.extensionId))
-                .map(i => {
-                    addedIds.add(i.extensionId);
-                    return translateGalleryItem(i, locale);
-                });
-            library.push(...filteredOther.map(toLibraryItem));
-        } else if (this.state.galleryTimedOut && !this.state.otherExtensions) {
-            library.push(toLibraryItem(galleryLoading));
-        } else if (this.state.galleryError && !this.state.otherExtensions) {
-            library.push(toLibraryItem(galleryError));
-        }
 
         return (
             <LibraryComponent
