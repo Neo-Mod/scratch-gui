@@ -11,4 +11,4 @@ updates:
       - dependency-name: "scratch-vm"
       - dependency-name: "scratch-paint"
       - dependency-name: "scratch-blocks"
-      - dependency-name: "dash-extensions-gallery"
+      - dependency-name: "neomod-extensions-gallery"

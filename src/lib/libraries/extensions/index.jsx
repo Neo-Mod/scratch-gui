@@ -336,6 +336,16 @@ export default [
         ),
         helpLink: 'https://scratch.mit.edu/vernier'
     },
+{
+        name: 'App Utilities',
+        extensionId: 'appmaker',
+        iconURL: 'https://gaiamod-main.github.io/static/assets/ab0f9df0edc8698e6e01580a343b5423.svg',
+		insetIconURL: 'https://gaiamod-main.github.io/static/assets/7698093467c8a39f4d05107e7c979c06.svg',
+        tags: ['other'],
+		collaborator: 'LibreKitten',
+        description: 'Develop apps in NeoMod.',
+        featured: true
+    },
     {
         // Not really an extension, but it's easiest to present it as one
         name: (
