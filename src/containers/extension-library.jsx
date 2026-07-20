@@ -57,7 +57,6 @@ const creditLink = (credit) => credit.link;
 let cachedTwGallery = null;
 let twGalleryMirror = false;
 let cachedPenguinMod = null;
-let cachedGaiaMod = null;
 let cachedGallery = null;
 
 const fetchTwLibrary = async () => {
@@ -146,38 +145,6 @@ const fetchPenguinMod = async () => {
     }));
 };
 
-const fetchGaiaMod = async () => {
-    return gmExtensions.map(extension => ({
-        name: extension.name,
-        nameTranslations: extension.nameTranslations || {},
-        description: extension.description,
-        descriptionTranslations: extension.descriptionTranslations || {},
-        extensionId: extension.id,
-        extensionURL: extension.code?.startsWith('http') ? extension.code : `https://gaiamod-main.github.io/extensions/${extension.code}`,
-        iconURL: extension.banner?.startsWith('http') ? extension.banner : `https://gaiamod-main.github.io/images/${extension.banner || 'unknown.svg'}`,
-        tags: ['gm'],
-        credits: [
-            ...(typeof extension.creator == 'object' ? extension.creator : [extension.creator] || []),
-            ...(extension.notes ? [extension.notes] : [])
-        ].map(credit => {
-            if (extension.notes && credit == extension.notes) return credit;
-            return (
-                <a
-                    href={extension.isGitHub ? `https://github.com/${credit}` : `https://scratch.mit.edu/users/${credit}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    key={credit}
-                >
-                    {credit}
-                </a>
-            );
-        }),
-        docsURI: null,
-        samples: null,
-        featured: true
-    }));
-};
-
 const fetchLibrary = async () => {
     return extensions.map(extension => ({
         name: extension.name,
@@ -222,7 +189,6 @@ class ExtensionLibrary extends React.PureComponent {
         ]);
         this.state = {
             pmExtensions: cachedPenguinMod,
-            gmExtensions: cachedGaiaMod,
             twGallery: cachedTwGallery,
             gallery: cachedGallery,
             galleryError: null,
@@ -258,22 +224,6 @@ class ExtensionLibrary extends React.PureComponent {
                     cachedPenguinMod = gallery;
                     this.setState({
                         pmExtensions: gallery
-                    });
-                    clearTimeout(timeout);
-                })
-                .catch(error => {
-                    log.error(error);
-                    this.setState({
-                        galleryError: error
-                    });
-                    clearTimeout(timeout);
-                });
-
-            fetchGaiaMod()
-                .then(gallery => {
-                    cachedGaiaMod = gallery;
-                    this.setState({
-                        gmExtensions: gallery
                     });
                     clearTimeout(timeout);
                 })
@@ -422,22 +372,6 @@ class ExtensionLibrary extends React.PureComponent {
         } else if (this.state.galleryTimedOut && !this.state.pmExtensions) {
             library.push(toLibraryItem(galleryLoading));
         } else if (this.state.galleryError && !this.state.pmExtensions) {
-            library.push(toLibraryItem(galleryError));
-        }
-
-        library.push('---');
-
-        if (this.state.gmExtensions) {
-            const filteredGm = this.state.gmExtensions
-                .filter(item => !addedIds.has(item.extensionId))
-                .map(i => {
-                    addedIds.add(i.extensionId);
-                    return translateGalleryItem(i, locale);
-                });
-            library.push(...filteredGm.map(toLibraryItem));
-        } else if (this.state.galleryTimedOut && !this.state.gmExtensions) {
-            library.push(toLibraryItem(galleryLoading));
-        } else if (this.state.galleryError && !this.state.gmExtensions) {
             library.push(toLibraryItem(galleryError));
         }
 		

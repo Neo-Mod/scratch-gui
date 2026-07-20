@@ -7,6 +7,5 @@ export default [
     {tag: 'nm', intlLabel: messages.neomod},
     {tag: 'tw', intlLabel: 'TurboWarp'}, // Because is a brand name, it's unnecessary for to be translatable.
     {tag: 'pm', intlLabel: messages.pm},
-    {tag: 'gm', intlLabel: messages.gm},
     {tag: 'other', intlLabel: messages.other}
 ];
